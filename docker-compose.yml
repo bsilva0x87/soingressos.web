@@ -1,0 +1,35 @@
+version: "3.8"
+services:
+  web:
+    container_name: web
+    build:
+      context: .
+      args:
+        - BUNDLE_PATH=/vendor/bundle
+        - BUNDLE_WITHOUT=production
+    command: bin/rails server -b 0.0.0.0 -p 3000
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/var/app
+      - ./vendor/bundle:/vendor/bundle
+    environment:
+      - DATABASE_URL=postgres://webapp:webapp@database:5432/soingressos
+    depends_on: 
+      - database
+
+  database:
+    container_name: database
+    image: postgres:14.1-alpine
+    environment:
+      - POSTGRES_USER=webapp
+      - POSTGRES_PASSWORD=webapp
+      - POSTGRES_DB=soingressos
+    ports:
+      - 5432:5432
+    volumes: 
+      - ./tmp/database:/var/lib/postgresql/data
+
+networks:
+  default:
+    name: webapp
