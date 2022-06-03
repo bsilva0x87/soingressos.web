@@ -24,4 +24,8 @@ RSpec.describe User, type: :model do
       it { should validate_length_of(:password).is_at_least(6).is_at_most(32) }
     end
   end
+
+  context 'associations' do
+    it { should have_many(:roles).class_name('UserRole') }
+  end
 end

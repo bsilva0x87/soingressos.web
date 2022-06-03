@@ -16,4 +16,8 @@ class User < ApplicationRecord
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   validates :username, presence: true, format: { with: EMAIL_REGEX }
   validates :password, presence: true, length: { in: (6..32) }
+
+  # Associations
+  has_many :roles, class_name: 'UserRole'
+
 end
