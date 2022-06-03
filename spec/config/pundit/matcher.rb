@@ -6,11 +6,11 @@ RSpec::Matchers.define :permit do |action|
   end
 
   failure_message do |policy|
-    matcher_message(policy: policy, action: action)
+    matcher_message(policy:, action:)
   end
 
   failure_message_when_negated do |policy|
-    matcher_message(policy: policy, action: action, word: 'forbid')
+    matcher_message(policy:, action:, word: 'forbid')
   end
 end
 
