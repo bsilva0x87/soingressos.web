@@ -19,5 +19,4 @@ class User < ApplicationRecord
 
   # Associations
   has_many :roles, class_name: 'UserRole'
-
 end
