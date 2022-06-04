@@ -34,7 +34,7 @@ RSpec.describe Address, type: :model do
 
     describe '#country' do
       it { should validate_presence_of(:country) }
-      it { should validate_length_of(:country).is_at_least(2).is_at_most(128) }
+      it { should validate_length_of(:country).is_at_least(2).is_at_most(64) }
     end
 
     describe '#zipcode' do
