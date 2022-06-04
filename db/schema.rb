@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_220_604_165_001) do
+ActiveRecord::Schema[7.0].define(version: 20_220_604_174_248) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'pgcrypto'
   enable_extension 'plpgsql'
@@ -54,6 +54,18 @@ ActiveRecord::Schema[7.0].define(version: 20_220_604_165_001) do
     t.index ['address_id'], name: 'index_companies_on_address_id'
     t.index ['deleted_at'], name: 'index_companies_on_deleted_at'
     t.index ['status'], name: 'index_companies_on_status'
+  end
+
+  create_table 'product_attributes', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
+    t.string 'kind', limit: 32
+    t.string 'description'
+    t.string 'status', limit: 32, default: 'active', null: false
+    t.uuid 'product_id', null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['kind'], name: 'index_product_attributes_on_kind'
+    t.index ['product_id'], name: 'index_product_attributes_on_product_id'
+    t.index ['status'], name: 'index_product_attributes_on_status'
   end
 
   create_table 'product_locations', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
