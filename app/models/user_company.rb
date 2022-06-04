@@ -1,5 +1,6 @@
-class UserCompany < ApplicationRecord
+# frozen_string_literal: true
 
+class UserCompany < ApplicationRecord
   validates_numericality_of :comission, less_than_or_equal_to: 100
 
   # Associations

@@ -11,7 +11,7 @@ class CreateAddresses < ActiveRecord::Migration[7.0]
       t.string :state, limit: 128
       t.string :country, limit: 128
       t.string :zipcode, limit: 16
-      t.string :status,default: 'active', index: true, null: false, limit: 32
+      t.string :status, default: 'active', index: true, null: false, limit: 32
 
       t.decimal :latitude,  precision: 10, scale: 6
       t.decimal :longitude, precision: 10, scale: 6

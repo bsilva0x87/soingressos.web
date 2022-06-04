@@ -5,9 +5,9 @@ class CreateRegions < ActiveRecord::Migration[7.0]
     create_table :regions, id: :uuid do |t|
       t.string :name, limit: 128
       t.string :status, default: 'active', index: true, null: false, limit: 32
-      
+
       t.uuid :region_id, null: false, foreign_key: true, index: true
-      
+
       t.string :slug, index: true, unique: true
 
       t.decimal :latitude,  precision: 10, scale: 6

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Address < ApplicationRecord
-
   validates :street, :city, presence: true, length: (4..128)
   validates :number, presence: true, length: { maximum: 8 }
   validates :neighborhood, presence: true, length: { maximum: 128 }

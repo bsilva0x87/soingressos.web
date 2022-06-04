@@ -11,7 +11,7 @@ RSpec.describe Region, type: :model do
   end
 
   context 'associations' do
-    it { should belong_to(:region).class_name('Region') }
+    it { should belong_to(:region).optional }
     it { should have_many(:regions).class_name('Region') }
   end
 end
