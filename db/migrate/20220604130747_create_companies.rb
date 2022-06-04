@@ -14,7 +14,7 @@ class CreateCompanies < ActiveRecord::Migration[7.0]
       t.string :locale, limit: 8
       t.string :status, default: 'active', index: true, null: false, limit: 32
 
-      t.uuid :address_id, index: true
+      t.uuid :address_id, foreign_key: true, index: true
 
       t.timestamps
       t.datetime :deleted_at, index: true
