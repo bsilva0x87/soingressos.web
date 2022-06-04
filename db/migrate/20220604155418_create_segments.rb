@@ -2,7 +2,7 @@
 
 class CreateSegments < ActiveRecord::Migration[7.0]
   def change
-    create_table :segments do |t|
+    create_table :segments, id: :uuid do |t|
       t.string :name, limit: 72
       t.string :description
       t.integer :index, default: 0
