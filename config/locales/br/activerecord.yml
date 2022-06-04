@@ -1,0 +1,13 @@
+br:
+  activerecord:
+    models:
+      user:
+        one: "usuário"
+        other: "usuários"
+    attributes:
+      user:
+        name: "nome"
+        username: "usuário"
+    errors:
+      messages:
+        record_invalid: '%{errors}'

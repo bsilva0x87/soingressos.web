@@ -32,6 +32,13 @@ module Soingressos
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    config.time_zone = 'Brasilia'
+
+    config.i18n.available_locales = %i[br en es]
+    config.i18n.default_locale = :br
+
+    path = Rails.root.join('config', 'locales', '**', '*.yml')
+    config.i18n.load_path += Dir[path]
 
     # Don't generate system test files.
     config.generators.system_tests = nil
