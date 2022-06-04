@@ -6,5 +6,6 @@ class Address < ApplicationRecord
   validates :neighborhood, presence: true, length: { maximum: 128 }
   validates :complement, presence: true, length: { maximum: 72 }
   validates :state, :country, presence: true, length: (2..128)
+  validates :country, presence: true, length: (2..64)
   validates :zipcode, presence: true, length: (6..16)
 end
