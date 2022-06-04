@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_04_162423) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_04_164150) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -54,8 +54,22 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_04_162423) do
     t.index ["status"], name: "index_companies_on_status"
   end
 
+  create_table "product_media", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "kind", limit: 32
+    t.string "value"
+    t.string "status", limit: 32, default: "active", null: false
+    t.uuid "product_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["kind"], name: "index_product_media_on_kind"
+    t.index ["product_id"], name: "index_product_media_on_product_id"
+    t.index ["status"], name: "index_product_media_on_status"
+  end
+
   create_table "products", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", limit: 240
+    t.text "description"
+    t.text "extra"
     t.string "status", limit: 32, default: "active", null: false
     t.uuid "company_id", null: false
     t.string "slug"
@@ -96,7 +110,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_04_162423) do
     t.index ["status"], name: "index_roles_on_status"
   end
 
-  create_table "segments", force: :cascade do |t|
+  create_table "segments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", limit: 72
     t.string "description"
     t.integer "index", default: 0
