@@ -2,7 +2,6 @@ AllCops:
   NewCops: enable
   Exclude:
     - bin/**/*
-    - db/**/*
     - lib/**/*
     - node_modules/**/*
     - Guardfile
@@ -22,3 +21,16 @@ Style/Documentation:
 Layout/LineLength:
   Exclude:
     - config/**/*
+
+Metrics/AbcSize:
+  Exclude:
+    - db/**/*
+
+Metrics/BlockLength:
+  Exclude:
+    - db/**/*
+    - spec/**/*
+
+Metrics/MethodLength:
+  Exclude:
+    - db/**/*
