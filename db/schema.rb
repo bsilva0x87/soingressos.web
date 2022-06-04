@@ -10,16 +10,57 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_03_204243) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_04_130747) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "addresses", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "street", limit: 128
+    t.string "number", limit: 8
+    t.string "neighborhood", limit: 128
+    t.string "complement", limit: 72
+    t.string "city", limit: 128
+    t.string "state", limit: 128
+    t.string "country", limit: 128
+    t.string "zipcode", limit: 16
+    t.string "status", limit: 32, default: "active", null: false
+    t.decimal "latitude", precision: 10, scale: 6
+    t.decimal "longitude", precision: 10, scale: 6
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_addresses_on_deleted_at"
+    t.index ["status"], name: "index_addresses_on_status"
+  end
+
+  create_table "companies", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", limit: 128
+    t.string "identifier", limit: 24
+    t.string "registration", limit: 24
+    t.string "manager", limit: 128
+    t.string "description"
+    t.string "phone", limit: 24
+    t.string "mobile", limit: 24
+    t.string "country_code", limit: 8
+    t.string "locale", limit: 8
+    t.string "status", limit: 32, default: "active", null: false
+    t.uuid "address_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["address_id"], name: "index_companies_on_address_id"
+    t.index ["deleted_at"], name: "index_companies_on_deleted_at"
+    t.index ["status"], name: "index_companies_on_status"
+  end
 
   create_table "regions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", limit: 128
     t.boolean "active", default: true
     t.uuid "region_id", null: false
     t.string "slug"
+    t.decimal "latitude", precision: 10, scale: 6
+    t.decimal "longitude", precision: 10, scale: 6
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
