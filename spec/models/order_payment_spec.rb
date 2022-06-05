@@ -12,6 +12,12 @@ RSpec.describe OrderPayment, type: :model do
       it { should validate_length_of(:provider).is_at_most(128) }
     end
 
+    describe '#currency' do
+      it do
+        should define_enum_for(:currency).with_values(%w[BRL USD EUR]).backed_by_column_of_type(:string)
+      end
+    end
+
     describe '#installments' do
       it { should validate_numericality_of(:installments).is_greater_than(0).only_integer }
     end

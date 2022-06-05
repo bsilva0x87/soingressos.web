@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class OrderPayment < ApplicationRecord
+  enum currency: %w[BRL USD EUR]
+
   validates :kind, presence: true
   validates :provider, length: { maximum: 128 }
   validates :installments, numericality: { greater_than: 0, only_integer: true }
