@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_220_605_210_337) do
+ActiveRecord::Schema[7.0].define(version: 20_220_605_214_919) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'pgcrypto'
   enable_extension 'plpgsql'
@@ -65,6 +65,22 @@ ActiveRecord::Schema[7.0].define(version: 20_220_605_210_337) do
     t.index ['address_id'], name: 'index_companies_on_address_id'
     t.index ['deleted_at'], name: 'index_companies_on_deleted_at'
     t.index ['status'], name: 'index_companies_on_status'
+  end
+
+  create_table 'orders', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
+    t.string 'code'
+    t.decimal 'value', precision: 10, scale: 2, default: '0.0'
+    t.decimal 'total', precision: 10, scale: 2, default: '0.0'
+    t.decimal 'commission', precision: 10, scale: 2, default: '0.0'
+    t.string 'coupon', limit: 32
+    t.decimal 'discount', precision: 10, scale: 2, default: '0.0'
+    t.uuid 'franchise_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.datetime 'deleted_at'
+    t.index ['code'], name: 'index_orders_on_code'
+    t.index ['deleted_at'], name: 'index_orders_on_deleted_at'
+    t.index ['franchise_id'], name: 'index_orders_on_franchise_id'
   end
 
   create_table 'product_attributes', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
