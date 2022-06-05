@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_220_605_221_458) do
+ActiveRecord::Schema[7.0].define(version: 20_220_605_223_708) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'pgcrypto'
   enable_extension 'plpgsql'
@@ -104,6 +104,21 @@ ActiveRecord::Schema[7.0].define(version: 20_220_605_221_458) do
     t.index ['deleted_at'], name: 'index_order_items_on_deleted_at'
     t.index ['order_id'], name: 'index_order_items_on_order_id'
     t.index ['product_id'], name: 'index_order_items_on_product_id'
+  end
+
+  create_table 'order_payments', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
+    t.uuid 'order_id', null: false
+    t.string 'kind', null: false
+    t.string 'provider'
+    t.string 'currency', limit: 4, default: 'BRL'
+    t.text 'metadata'
+    t.integer 'installments', default: 1
+    t.decimal 'total', precision: 10, scale: 2, default: '0.0'
+    t.decimal 'commission', precision: 10, scale: 2, default: '0.0'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['kind'], name: 'index_order_payments_on_kind'
+    t.index ['order_id'], name: 'index_order_payments_on_order_id'
   end
 
   create_table 'orders', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
