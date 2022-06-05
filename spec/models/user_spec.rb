@@ -27,5 +27,6 @@ RSpec.describe User, type: :model do
 
   context 'associations' do
     it { should have_many(:roles).class_name('UserRole') }
+    it { should have_many(:affiliate_codes) }
   end
 end
