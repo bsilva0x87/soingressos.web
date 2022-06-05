@@ -5,5 +5,4 @@ class AffiliateCode < ApplicationRecord
 
   # Associations
   belongs_to :user
-
 end

@@ -20,5 +20,4 @@ class User < ApplicationRecord
   # Associations
   has_many :roles, class_name: 'UserRole'
   has_many :affiliate_codes
-  
 end
