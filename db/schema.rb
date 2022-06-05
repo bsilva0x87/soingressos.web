@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_220_605_215_922) do
+ActiveRecord::Schema[7.0].define(version: 20_220_605_221_458) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'pgcrypto'
   enable_extension 'plpgsql'
@@ -67,7 +67,29 @@ ActiveRecord::Schema[7.0].define(version: 20_220_605_215_922) do
     t.index ['status'], name: 'index_companies_on_status'
   end
 
-  create_table 'order_items', force: :cascade do |t|
+  create_table 'order_customers', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
+    t.uuid 'order_id', null: false
+    t.string 'name', limit: 128
+    t.string 'email', limit: 128
+    t.string 'phone', limit: 18
+    t.string 'mobile', limit: 18
+    t.date 'birthdate'
+    t.string 'identifier', limit: 24
+    t.string 'document', limit: 24
+    t.string 'street', limit: 128
+    t.string 'number', limit: 8
+    t.string 'neighborhood', limit: 128
+    t.string 'complement', limit: 72
+    t.string 'city', limit: 128
+    t.string 'state', limit: 128
+    t.string 'country', limit: 64
+    t.string 'zipcode', limit: 16
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['order_id'], name: 'index_order_customers_on_order_id'
+  end
+
+  create_table 'order_items', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
     t.uuid 'order_id', null: false
     t.uuid 'product_id', null: false
     t.date 'date'
@@ -80,6 +102,8 @@ ActiveRecord::Schema[7.0].define(version: 20_220_605_215_922) do
     t.datetime 'updated_at', null: false
     t.datetime 'deleted_at'
     t.index ['deleted_at'], name: 'index_order_items_on_deleted_at'
+    t.index ['order_id'], name: 'index_order_items_on_order_id'
+    t.index ['product_id'], name: 'index_order_items_on_product_id'
   end
 
   create_table 'orders', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
