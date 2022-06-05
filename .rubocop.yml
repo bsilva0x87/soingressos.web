@@ -28,6 +28,7 @@ Metrics/AbcSize:
 
 Metrics/BlockLength:
   Exclude:
+    - config/**/*
     - db/**/*
     - spec/**/*
 
