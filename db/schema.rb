@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_220_605_223_708) do
+ActiveRecord::Schema[7.0].define(version: 20_220_605_225_749) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'pgcrypto'
   enable_extension 'plpgsql'
@@ -255,6 +255,28 @@ ActiveRecord::Schema[7.0].define(version: 20_220_605_223_708) do
     t.index ['deleted_at'], name: 'index_segments_on_deleted_at'
     t.index ['segment_id'], name: 'index_segments_on_segment_id'
     t.index ['slug'], name: 'index_segments_on_slug'
+  end
+
+  create_table 'tickets', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
+    t.string 'kind'
+    t.string 'code'
+    t.uuid 'user_id', null: false
+    t.uuid 'product_id', null: false
+    t.date 'date'
+    t.text 'metadata'
+    t.string 'status', limit: 32, default: 'waiting', null: false
+    t.datetime 'expires_at'
+    t.datetime 'validated_at'
+    t.string 'reference'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['code'], name: 'index_tickets_on_code'
+    t.index ['kind'], name: 'index_tickets_on_kind'
+    t.index ['product_id'], name: 'index_tickets_on_product_id'
+    t.index ['reference'], name: 'index_tickets_on_reference'
+    t.index ['status'], name: 'index_tickets_on_status'
+    t.index ['user_id'], name: 'index_tickets_on_user_id'
+    t.index ['validated_at'], name: 'index_tickets_on_validated_at'
   end
 
   create_table 'user_companies', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
