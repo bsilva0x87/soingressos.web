@@ -18,6 +18,26 @@ services:
     depends_on: 
       - database
 
+  test:
+    container_name: test
+    build:
+      context: .
+      args:
+        - BUNDLE_PATH=/vendor/bundle
+        - BUNDLE_WITHOUT=production
+        - RAILS_ENV=test
+    command: bin/rails server -b 0.0.0.0 -p 3000 -e test
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/var/app
+      - ./vendor/bundle:/vendor/bundle
+    environment:
+      - RAILS_ENV=test
+      - DATABASE_URL=postgres://webapp:webapp@database:5432/soingressos
+    depends_on: 
+      - database
+
   database:
     container_name: database
     image: postgres:14.1-alpine
