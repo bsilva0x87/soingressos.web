@@ -41,5 +41,11 @@ RSpec.describe Address, type: :model do
       it { should validate_presence_of(:zipcode) }
       it { should validate_length_of(:zipcode).is_at_least(6).is_at_most(16) }
     end
+
+    describe '#status' do
+      it { should validate_presence_of(:status) }
+      it { should define_enum_for(:status).with_values(%w[active inactive]).backed_by_column_of_type(:string) }
+      it { should_not allow_values('null', 'none', 'locked').for(:status) }
+    end
   end
 end

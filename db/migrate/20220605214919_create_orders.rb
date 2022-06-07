@@ -11,6 +11,7 @@ class CreateOrders < ActiveRecord::Migration[7.0]
       t.decimal :discount, precision: 10, scale: 2, default: 0.0
 
       t.uuid :franchise_id, foreign_key: true, index: true
+      t.string :status, default: 'waiting', index: true, null: false, limit: 32
 
       t.timestamps
       t.datetime :deleted_at, index: true

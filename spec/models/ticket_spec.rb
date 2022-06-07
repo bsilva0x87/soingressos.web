@@ -13,6 +13,12 @@ RSpec.describe Ticket, type: :model do
     describe '#date' do
       it { should validate_presence_of(:date) }
     end
+
+    describe '#status' do
+      it { should validate_presence_of(:status) }
+      it { should define_enum_for(:status).with_values(%w[active inactive]).backed_by_column_of_type(:string) }
+      it { should_not allow_values('null', 'none', 'invalid').for(:status) }
+    end
   end
 
   context 'associations' do

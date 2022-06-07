@@ -13,6 +13,7 @@ class CreateOrderPayments < ActiveRecord::Migration[7.0]
       t.integer :installments, default: 1
       t.decimal :total, precision: 10, scale: 2, default: 0.0
       t.decimal :commission, precision: 10, scale: 2, default: 0.0
+      t.string :status, default: 'waiting', index: true, null: false, limit: 32
 
       t.timestamps
     end

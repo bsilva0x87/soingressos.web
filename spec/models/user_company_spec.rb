@@ -4,7 +4,15 @@ require 'rails_helper'
 
 RSpec.describe UserCompany, type: :model do
   context 'validations' do
-    it { should validate_numericality_of(:comission).is_less_than_or_equal_to(100) }
+    describe '#comission' do
+      it { should validate_numericality_of(:comission).is_less_than_or_equal_to(100) }
+    end
+
+    describe '#status' do
+      it { should validate_presence_of(:status) }
+      it { should define_enum_for(:status).with_values(%w[active inactive]).backed_by_column_of_type(:string) }
+      it { should_not allow_values('null', 'none', 'empty').for(:status) }
+    end
   end
 
   context 'associations' do

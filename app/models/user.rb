@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+
   # Include default devise modules. Others available are:
   devise :confirmable,
          :lockable,
@@ -11,6 +12,12 @@ class User < ApplicationRecord
          :rememberable,
          :database_authenticatable, authentication_keys: [:username]
 
+  # Statusable attribute concern
+  STATUS_OPTIONS = %w[active inactive]
+  include Statusable
+  
+  # Validations
+  validates :status, presence: true, inclusion: { in: STATUS_OPTIONS }
   validates :first_name, :last_name, presence: true, length: { in: (2..128) }
 
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i

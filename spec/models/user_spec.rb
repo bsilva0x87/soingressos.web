@@ -23,6 +23,12 @@ RSpec.describe User, type: :model do
       it { should validate_presence_of(:password) }
       it { should validate_length_of(:password).is_at_least(6).is_at_most(32) }
     end
+
+    describe '#status' do
+      it { should validate_presence_of(:status) }
+      it { should define_enum_for(:status).with_values(%w[active inactive]).backed_by_column_of_type(:string) }
+      it { should_not allow_values('null', 'none', 'empty').for(:status) }
+    end
   end
 
   context 'associations' do
