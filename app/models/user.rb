@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-
   # Include default devise modules. Others available are:
   devise :confirmable,
          :lockable,
@@ -13,9 +12,9 @@ class User < ApplicationRecord
          :database_authenticatable, authentication_keys: [:username]
 
   # Statusable attribute concern
-  STATUS_OPTIONS = %w[active inactive]
+  STATUS_OPTIONS = %w[active inactive].freeze
   include Statusable
-  
+
   # Validations
   validates :status, presence: true, inclusion: { in: STATUS_OPTIONS }
   validates :first_name, :last_name, presence: true, length: { in: (2..128) }

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Statusable
   extend ActiveSupport::Concern
 
@@ -8,6 +10,6 @@ module Statusable
   def status=(value)
     self[:status] = value
   rescue ArgumentError
-    self.errors.add(:status, :invalid)
+    errors.add(:status, :invalid)
   end
 end

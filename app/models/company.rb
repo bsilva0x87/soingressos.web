@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 class Company < ApplicationRecord
-  
   # Statusable attribute concern
-  STATUS_OPTIONS = %w[active inactive]
+  STATUS_OPTIONS = %w[active inactive].freeze
   include Statusable
 
   # Validations
