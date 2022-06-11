@@ -60,4 +60,5 @@ group :test do
   gem 'rspec-rails', '5.1.2', require: false
   gem 'shoulda-matchers', '5.1.0'
   gem 'simplecov', '0.21.2', require: false
+  gem 'webmock', '3.14.0'
 end
