@@ -17,6 +17,10 @@ gem 'slim', '4.1.0'
 gem 'sprockets-rails', '3.4.2'
 gem 'stimulus-rails', '1.0.4'
 gem 'turbo-rails', '1.1.1'
+gem 'http', '5.0.4'
+gem 'pagy', '5.10.1'
+gem 'jwt', '2.4.1'
+gem 'sidekiq', '6.5.0'
 
 # Use Redis adapter to run Action Cable in production
 gem 'redis', '4.6.0'
