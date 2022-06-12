@@ -62,8 +62,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_12_152753) do
   end
 
   create_table "companies", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "type", null: false
     t.string "name", limit: 128
-    t.string "identifier", limit: 24
+    t.string "identifier", limit: 24, null: false
     t.string "registration", limit: 24
     t.string "manager", limit: 128
     t.string "description"
@@ -78,7 +79,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_12_152753) do
     t.datetime "deleted_at"
     t.index ["address_id"], name: "index_companies_on_address_id"
     t.index ["deleted_at"], name: "index_companies_on_deleted_at"
+    t.index ["identifier"], name: "index_companies_on_identifier"
     t.index ["status"], name: "index_companies_on_status"
+    t.index ["type", "identifier"], name: "index_companies_type_identifier_uniqueness", unique: true
+    t.index ["type"], name: "index_companies_on_type"
   end
 
   create_table "company_integrations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
