@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_12_150236) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_12_152753) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -43,6 +43,22 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_12_150236) do
     t.index ["code"], name: "index_affiliate_codes_on_code"
     t.index ["status"], name: "index_affiliate_codes_on_status"
     t.index ["user_id"], name: "index_affiliate_codes_on_user_id"
+  end
+
+  create_table "commission_rules", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.string "name", null: false
+    t.decimal "value", precision: 10, scale: 2, default: "0.0"
+    t.string "kind", default: "percent", null: false
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_commission_rules_on_deleted_at"
+    t.index ["kind"], name: "index_commission_rules_on_kind"
+    t.index ["name"], name: "index_commission_rules_on_name"
+    t.index ["record_type", "record_id", "name"], name: "index_comission_rules_uniqueness", unique: true
   end
 
   create_table "companies", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -89,7 +105,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_12_150236) do
 
   create_table "integrations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", limit: 128
-    t.string "description", limit: 240
+    t.string "description"
     t.string "username", limit: 128
     t.string "password"
     t.string "kind", limit: 64, null: false
