@@ -20,7 +20,7 @@ WORKDIR /var/app
 
 ADD Gemfile Gemfile.lock ./
 
-RUN bundle config set path ${BUNDLE_PATH}}
+RUN bundle config set path ${BUNDLE_PATH}
 RUN bundle config set without ${BUNDLE_WITHOUT}
 RUN bundle config set deployment ${BUNDLE_DEPLOYMENT}
 
