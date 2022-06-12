@@ -31,6 +31,9 @@ Rails.application.configure do
   config.active_record.verbose_query_logs = true
   config.assets.quiet = true
 
+  # Allow requests to www.example.com.
+  config.hosts << "www.example.com"
+
   # Raises error for missing translations.
   config.i18n.raise_on_missing_translations = true
 
