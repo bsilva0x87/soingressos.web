@@ -16,27 +16,6 @@ services:
     environment:
       - DATABASE_URL=postgres://webapp:webapp@database:5432/soingressos
       - RAILS_ENV=development
-      - NOVA_XS_URL=https://travel3.novaxs.com.br/api
-    depends_on: 
-      - database
-
-  test:
-    container_name: test
-    build:
-      context: .
-      args:
-        - BUNDLE_PATH=/vendor/bundle
-        - BUNDLE_WITHOUT=production
-        - RAILS_ENV=test
-    command: bin/rails server -b 0.0.0.0 -p 3000 -e test
-    ports:
-      - 3000:3000
-    volumes:
-      - .:/var/app
-      - ./vendor/bundle:/vendor/bundle
-    environment:
-      - DATABASE_URL=postgres://webapp:webapp@database:5432/soingressos
-      - RAILS_ENV=test
     depends_on: 
       - database
 
