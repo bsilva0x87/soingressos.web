@@ -40,12 +40,12 @@ gem 'tzinfo-data', '1.2022.1'
 
 group :development, :test do
   gem 'debug', '1.5.0', platforms: %i[mri mingw x64_mingw]
+  gem 'rubocop', '1.30.0', require: false
 end
 
 group :development do
   gem 'bullet', '7.0.1'
   gem 'letter_opener', '1.8.1'
-  gem 'rubocop', '1.30.0', require: false
   gem 'rubycritic', '4.7.0', require: false
 
   # Use console on exceptions pages

@@ -5,9 +5,8 @@ services:
     build:
       context: .
       args:
-        - BUNDLE_PATH=/var/app/vendor/bundle
+        - BUNDLE_PATH=/vendor/bundle
         - BUNDLE_WITHOUT=production
-        - BUNDLE_DEPLOYMENT=false
     command: bundle exec rspec
     volumes:
       - .:/var/app
