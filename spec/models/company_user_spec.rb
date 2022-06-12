@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe UserCompany, type: :model do
+RSpec.describe CompanyUser, type: :model do
   context 'validations' do
     describe '#comission' do
       it { should validate_numericality_of(:comission).is_less_than_or_equal_to(100) }
@@ -16,8 +16,8 @@ RSpec.describe UserCompany, type: :model do
   end
 
   context 'associations' do
-    it { should belong_to(:user) }
     it { should belong_to(:company) }
+    it { should belong_to(:user) }
     it { should belong_to(:role).optional }
   end
 end

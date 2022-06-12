@@ -75,6 +75,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_12_134921) do
     t.index ["integration_id"], name: "index_company_integrations_on_integration_id"
   end
 
+  create_table "company_users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "user_id", null: false
+    t.uuid "company_id", null: false
+    t.uuid "role_id"
+    t.decimal "comission", precision: 4, scale: 2, default: "0.0"
+    t.string "status", limit: 32, default: "active", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_company_users_on_company_id"
+    t.index ["status"], name: "index_company_users_on_status"
+    t.index ["user_id"], name: "index_company_users_on_user_id"
+  end
+
   create_table "integrations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", limit: 128
     t.string "description", limit: 240
@@ -307,19 +320,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_12_134921) do
     t.index ["status"], name: "index_tickets_on_status"
     t.index ["user_id"], name: "index_tickets_on_user_id"
     t.index ["validated_at"], name: "index_tickets_on_validated_at"
-  end
-
-  create_table "user_companies", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "user_id", null: false
-    t.uuid "company_id", null: false
-    t.uuid "role_id"
-    t.decimal "comission", precision: 4, scale: 2, default: "0.0"
-    t.string "status", limit: 32, default: "active", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["company_id"], name: "index_user_companies_on_company_id"
-    t.index ["status"], name: "index_user_companies_on_status"
-    t.index ["user_id"], name: "index_user_companies_on_user_id"
   end
 
   create_table "user_roles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
