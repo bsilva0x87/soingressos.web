@@ -1,0 +1,41 @@
+version: "3.8"
+services:
+  web:
+    container_name: web
+    build:
+      context: .
+      args:
+        - BUNDLE_PATH=/var/app/vendor/bundle
+        - BUNDLE_WITHOUT=production
+        - BUNDLE_DEPLOYMENT=false
+    command: bundle exec rspec
+    volumes:
+      - .:/var/app
+      - ./vendor/bundle:/vendor/bundle
+    environment:
+      - DATABASE_URL=postgres://webapp:webapp@database:5432/webapp_test
+      - RAILS_ENV=test
+      - SELENIUM_REMOTE_HOST=selenium
+    depends_on: 
+      - database
+      # - selenium
+
+  database:
+    container_name: database
+    image: postgres:14.1-alpine
+    environment:
+      - POSTGRES_DB=webapp_test
+      - POSTGRES_USER=webapp
+      - POSTGRES_PASSWORD=webapp
+    ports:
+      - 5432:5432
+    volumes: 
+      - ./tmp/database:/var/lib/postgresql/data
+
+  # selenium:
+  #   container_name: selenium
+  #   image: selenium/standalone-chrome
+
+networks:
+  default:
+    name: webapp
