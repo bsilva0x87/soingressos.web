@@ -1,0 +1,20 @@
+[
+  {
+    "id": "46700",
+    "supplierName": "NXS - Operadora Demo",
+    "image": "",
+    "minAmount": "1",
+    "htmlMemo": "",
+    "available": "100.00",
+    "memo": "",
+    "supplierPath": "agencies/954",
+    "type": "Produto",
+    "additionalLanguagesInfo": [],
+    "path": "products/46700",
+    "schedules": [],
+    "name": "Ingresso Individual",
+    "currency": "BRL",
+    "shortName": "Ingresso Individual",
+    "value": "10000"
+  }
+]
