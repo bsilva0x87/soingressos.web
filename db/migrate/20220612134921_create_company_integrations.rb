@@ -8,6 +8,7 @@ class CreateCompanyIntegrations < ActiveRecord::Migration[7.0]
       t.string :chmod, limit: 4, default: '0777'
 
       t.timestamps
+      t.datetime :deleted_at, index: true
     end
   end
 end

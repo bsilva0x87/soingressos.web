@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_12_142303) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_12_150236) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -71,6 +71,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_12_142303) do
     t.string "chmod", limit: 4, default: "0777"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_company_integrations_on_deleted_at"
   end
 
   create_table "company_users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -239,6 +241,22 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_12_142303) do
     t.index ["status"], name: "index_product_media_on_status"
   end
 
+  create_table "product_stock_trackings", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "kind", null: false
+    t.uuid "product_id", null: false
+    t.string "description"
+    t.integer "quantity", default: 1
+    t.string "origin", default: "stock"
+    t.string "ref"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_product_stock_trackings_on_deleted_at"
+    t.index ["kind"], name: "index_product_stock_trackings_on_kind"
+    t.index ["product_id"], name: "index_product_stock_trackings_on_product_id"
+    t.index ["ref"], name: "index_product_stock_trackings_on_ref"
+  end
+
   create_table "product_stocks", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "product_id", null: false
     t.date "date"
@@ -249,7 +267,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_12_142303) do
     t.uuid "stock_type_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["date"], name: "index_product_stocks_on_date"
+    t.index ["deleted_at"], name: "index_product_stocks_on_deleted_at"
     t.index ["product_id"], name: "index_product_stocks_on_product_id"
     t.index ["stock_type_id"], name: "index_product_stocks_on_stock_type_id"
   end

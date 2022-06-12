@@ -14,6 +14,7 @@ class CreateProductStocks < ActiveRecord::Migration[7.0]
       t.uuid :stock_type_id, null: false, foreign_key: true, index: true
 
       t.timestamps
+      t.datetime :deleted_at, index: true
     end
   end
 end
