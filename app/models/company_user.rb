@@ -6,7 +6,6 @@ class CompanyUser < ApplicationRecord
   include Statusable
 
   # Validations
-  validates_numericality_of :comission, less_than_or_equal_to: 100
   validates :status, presence: true, inclusion: { in: STATUS_OPTIONS }
 
   # Associations
