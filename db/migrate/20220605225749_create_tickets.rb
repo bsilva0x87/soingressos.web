@@ -19,6 +19,7 @@ class CreateTickets < ActiveRecord::Migration[7.0]
       t.string :reference, index: true
 
       t.timestamps
+      t.datetime :deleted_at, index: true
     end
   end
 end

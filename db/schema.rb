@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_12_134921) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_12_140725) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -71,8 +71,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_12_134921) do
     t.string "chmod", limit: 4, default: "0777"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["company_id"], name: "index_company_integrations_on_company_id"
-    t.index ["integration_id"], name: "index_company_integrations_on_integration_id"
   end
 
   create_table "company_users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -100,6 +98,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_12_134921) do
     t.string "status", limit: 32, default: "active", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_integrations_on_deleted_at"
     t.index ["kind"], name: "index_integrations_on_kind"
     t.index ["status"], name: "index_integrations_on_status"
   end
@@ -300,6 +300,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_12_134921) do
     t.index ["status"], name: "index_segments_on_status"
   end
 
+  create_table "stock_types", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", limit: 128
+    t.string "description", limit: 240
+    t.string "status", limit: 32, default: "active", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_stock_types_on_deleted_at"
+    t.index ["status"], name: "index_stock_types_on_status"
+  end
+
   create_table "tickets", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "kind"
     t.string "code"
@@ -313,7 +324,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_12_134921) do
     t.string "reference"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["code"], name: "index_tickets_on_code"
+    t.index ["deleted_at"], name: "index_tickets_on_deleted_at"
     t.index ["kind"], name: "index_tickets_on_kind"
     t.index ["product_id"], name: "index_tickets_on_product_id"
     t.index ["reference"], name: "index_tickets_on_reference"
@@ -364,6 +377,4 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_12_134921) do
     t.index ["username"], name: "index_users_on_username"
   end
 
-  add_foreign_key "company_integrations", "companies"
-  add_foreign_key "company_integrations", "integrations"
 end
