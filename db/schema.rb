@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_11_181659) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_12_134921) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -63,6 +63,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_11_181659) do
     t.index ["address_id"], name: "index_companies_on_address_id"
     t.index ["deleted_at"], name: "index_companies_on_deleted_at"
     t.index ["status"], name: "index_companies_on_status"
+  end
+
+  create_table "company_integrations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "company_id", null: false
+    t.uuid "integration_id", null: false
+    t.string "chmod", limit: 4, default: "0777"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_company_integrations_on_company_id"
+    t.index ["integration_id"], name: "index_company_integrations_on_integration_id"
   end
 
   create_table "integrations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -354,4 +364,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_11_181659) do
     t.index ["username"], name: "index_users_on_username"
   end
 
+  add_foreign_key "company_integrations", "companies"
+  add_foreign_key "company_integrations", "integrations"
 end
