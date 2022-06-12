@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-class Service
+class Service < OpenStruct
   def self.exec(*args, &)
-    new(*args, &).call
+    new(*args, &).exec
   end
 
   def attributes
