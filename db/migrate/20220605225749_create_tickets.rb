@@ -9,7 +9,7 @@ class CreateTickets < ActiveRecord::Migration[7.0]
       t.uuid :user_id, null: false, foreign_key: true, index: true
       t.uuid :product_id, null: false, foreign_key: true, index: true
       t.date :date
-      t.text :metadata
+      t.json :metadata
 
       t.string :status, default: 'waiting', index: true, null: false, limit: 32
 

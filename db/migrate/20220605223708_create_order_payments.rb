@@ -8,7 +8,7 @@ class CreateOrderPayments < ActiveRecord::Migration[7.0]
       t.string :kind, null: false, index: true
       t.string :provider
       t.string :currency, default: 'BRL', limit: 4
-      t.text :metadata
+      t.json :metadata
 
       t.integer :installments, default: 1
       t.decimal :total, precision: 10, scale: 2, default: 0.0
