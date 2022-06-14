@@ -61,5 +61,5 @@ Rails.application.configure do
   # config.action_view.annotate_rendered_view_with_filenames = true
 
   # Allow requests to www.example.com.
-  config.hosts << "www.example.com"
+  config.hosts << 'www.example.com'
 end
