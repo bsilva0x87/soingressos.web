@@ -5,32 +5,32 @@ require 'rails_helper'
 RSpec.describe Novaxs::GetProductsByDate, type: :service do
   describe '#call' do
     subject do
-      described_class.new( endpoint: endpoint, credentials: credentials, values: { date: I18n.l(Date.today) })
+      described_class.new(endpoint:, credentials:, values: { date: I18n.l(Date.today) })
     end
-    
+
     # Stub request to webmock disabled real network connection.
     before do
       stub_request(:post, endpoint)
-        .with(body: /\"login\":\"invalid-user-case\"/)
+        .with(body: /"login":"invalid-user-case"/)
         .to_return(status: 200, body: '{"erro": "Usuario nao informado"}')
 
       stub_request(:post, endpoint)
-        .with(body: /\"login\":\"invalid-token-case\"/)
+        .with(body: /"login":"invalid-token-case"/)
         .to_return(status: 200, body: '{"erro": "Token incorreto"}')
 
       stub_request(:post, endpoint)
-        .with(body: /\"login\":\"soingressos\"/)
+        .with(body: /"login":"soingressos"/)
         .to_return(status: 200, body: json_data)
     end
 
     it 'returns error with invalid user' do
       subject.credentials[:login] = 'invalid-user-case'
-      expect(subject.call).to eq({:erro => 'Usuario nao informado'})
+      expect(subject.call).to eq({ erro: 'Usuario nao informado' })
     end
 
     it 'returns error with invalid token' do
       subject.credentials[:login] = 'invalid-token-case'
-      expect(subject.call).to eq({:erro => 'Token incorreto'})
+      expect(subject.call).to eq({ erro: 'Token incorreto' })
     end
 
     it 'returns a simple product data' do

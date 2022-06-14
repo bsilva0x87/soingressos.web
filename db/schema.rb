@@ -341,7 +341,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_12_152753) do
   create_table "regions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", limit: 128
     t.string "status", limit: 32, default: "active", null: false
-    t.uuid "region_id", null: false
+    t.uuid "region_id"
     t.string "slug"
     t.decimal "latitude", precision: 10, scale: 6
     t.decimal "longitude", precision: 10, scale: 6
