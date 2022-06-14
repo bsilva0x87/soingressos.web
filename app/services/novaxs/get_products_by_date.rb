@@ -11,7 +11,7 @@ module Novaxs
     end
 
     def call
-      response = HTTP.post(endpoint, body:)
+      response = HTTP.post(endpoint, body:, headers:)
       JSON.parse(response.body, symbolize_names: true)
     end
 
@@ -19,6 +19,10 @@ module Novaxs
 
     def body
       JSON({ credentials:, method: 'getProductsByDate', values: })
+    end
+
+    def headers
+      { 'Content-Type' => 'application/json', 'Content-Length' => body.bytesize }
     end
   end
 end
