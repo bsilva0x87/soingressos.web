@@ -8,6 +8,7 @@ class CreateIntegrationProducts < ActiveRecord::Migration[7.0]
       t.string :status, default: 'active', index: true, null: false, limit: 32
 
       t.timestamps
+      t.datetime :deleted_at, index: true
     end
   end
 end

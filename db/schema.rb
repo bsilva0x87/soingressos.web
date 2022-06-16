@@ -142,6 +142,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_12_152753) do
     t.string "status", limit: 32, default: "active", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_integration_products_on_deleted_at"
     t.index ["integration_id"], name: "index_integration_products_on_integration_id"
     t.index ["product_id"], name: "index_integration_products_on_product_id"
     t.index ["status"], name: "index_integration_products_on_status"
@@ -299,6 +301,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_12_152753) do
     t.index ["kind"], name: "index_product_media_on_kind"
     t.index ["product_id"], name: "index_product_media_on_product_id"
     t.index ["status"], name: "index_product_media_on_status"
+  end
+
+  create_table "product_related", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "product_id", null: false
+    t.string "record_type", null: false
+    t.uuid "record_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_product_related_on_product_id"
+    t.index ["record_id"], name: "index_product_related_on_record_id"
+    t.index ["record_type"], name: "index_product_related_on_record_type"
   end
 
   create_table "product_stock_trackings", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
