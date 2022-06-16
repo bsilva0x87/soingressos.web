@@ -32,7 +32,8 @@ Rails.application.configure do
   config.assets.quiet = true
 
   # Allow requests to lvh.me
-  config.hosts << '*.lvh.me'
+  config.hosts << 'local.lvh.me'
+  config.hosts << 'other.lvh.me'
 
   # Raises error for missing translations.
   config.i18n.raise_on_missing_translations = true
