@@ -1,0 +1,8 @@
+br:
+  helpers:
+    select:
+      prompt: selecione...
+    submit:
+      create: salvar %{model}
+      submit: salvar %{model}
+      update: salvar %{model}

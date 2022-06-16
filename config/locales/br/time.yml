@@ -1,0 +1,10 @@
+br:
+  time:
+    am: ''
+    formats:
+      default: "%d/%m/%Y %H:%M"
+      long: "%d de %B de %Y, %H:%M"
+      short: "%d de %B, %H:%M"
+      full: "%a, %d de %B de %Y, %H:%M:%S"
+      min: "%d/%m, %H:%M"
+    pm: ''

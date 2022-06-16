@@ -1,7 +1,0 @@
-br:
-  nova_xs:
-    errors:
-      format: "%{attribute} %{message}"
-      messages:
-        bad_request: "Tentativa de solicitação inválida. Status: %{status}. Motivo: %{error}"
-        bad_credentials: "Credenciais de acessos inválidas. Motivo: %{error}"
