@@ -123,6 +123,20 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_12_152753) do
     t.index ["deleted_at"], name: "index_company_integrations_on_deleted_at"
   end
 
+  create_table "company_subdomains", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "company_id", null: false
+    t.string "subdomain"
+    t.string "status", limit: 32, default: "active", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["company_id"], name: "index_company_subdomains_on_company_id"
+    t.index ["deleted_at"], name: "index_company_subdomains_on_deleted_at"
+    t.index ["status"], name: "index_company_subdomains_on_status"
+    t.index ["subdomain"], name: "index_company_subdomains_on_subdomain"
+    t.index ["subdomain"], name: "index_subdomain_uniqueness", unique: true
+  end
+
   create_table "company_users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "user_id", null: false
     t.uuid "company_id", null: false
