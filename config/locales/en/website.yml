@@ -1,0 +1,15 @@
+en:
+  website:
+    app_name: My Tickets
+    root_title: Homepage
+    my_account: My Account
+    locale_icon: USD.png
+    locale_name: English (EN)
+    currency: USD
+    about_us: About us
+    change_location: Choose your destiny
+    change_location_explain: As soon as you choose another destination our website will select new content based on your choice.
+    change_locale: Change locale
+    change_locale_explain: Please select a language below for your best experience.
+    change_currency: Change currency
+    change_currency_explain: Currently our website works only with BRL (Brazilian Real).

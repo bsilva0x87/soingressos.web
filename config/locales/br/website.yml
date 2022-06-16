@@ -2,3 +2,14 @@ br:
   website:
     app_name: Só Ingressos
     root_title: Página Inicial
+    my_account: Minha conta
+    locale_icon: BRL.png
+    locale_name: Português Brasileiro (pt-BR)
+    currency: BRL
+    about_us: Quem somos
+    change_location: Escolha o seu destino
+    change_location_explain: Assim que você escolher outro destino o nosso website vai selecionar um novo conteúdo baseado na sua escolha.
+    change_locale: Alterar idioma
+    change_locale_explain: Selecione abaixo um idioma para sua melhor experiência.
+    change_currency: Alterar moeda
+    change_currency_explain: Atualmente o nosso website trabalha somente com BRL (Real Brasileiro).
