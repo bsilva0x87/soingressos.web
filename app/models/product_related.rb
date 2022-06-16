@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class ProductRelated < ApplicationRecord
-  self.table_name = "product_related"
+  self.table_name = 'product_related'
 
   # Associations
   belongs_to :product

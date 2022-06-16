@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class IntegrationProduct < ApplicationRecord
   enum status: { active: 'active', inactive: 'inactive' }
 

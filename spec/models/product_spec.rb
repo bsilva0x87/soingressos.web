@@ -11,10 +11,10 @@ RSpec.describe Product, type: :model do
 
     describe '#status' do
       it { should validate_presence_of(:status) }
-      
-      it do 
+
+      it do
         should define_enum_for(:status)
-          .with_values({active: 'active', inactive: 'inactive'})
+          .with_values({ active: 'active', inactive: 'inactive' })
           .backed_by_column_of_type(:string)
       end
     end

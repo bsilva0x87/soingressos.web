@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Address < ApplicationRecord
-  enum status: {active: 'active', inactive: 'inactive'}
+  enum status: { active: 'active', inactive: 'inactive' }
 
   # Validations
   validates :street, :city, presence: true, length: (4..128)

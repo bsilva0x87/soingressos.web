@@ -16,10 +16,10 @@ RSpec.describe CommissionRule, type: :model do
 
     describe '#kind' do
       it { should validate_presence_of(:kind) }
-      
-      it do 
+
+      it do
         should define_enum_for(:kind)
-          .with_values({percent: 'percent', markdown: 'markdown'})
+          .with_values({ percent: 'percent', markdown: 'markdown' })
           .backed_by_column_of_type(:string)
       end
     end

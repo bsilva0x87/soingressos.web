@@ -11,7 +11,7 @@ class User < ApplicationRecord
          :rememberable,
          :database_authenticatable, authentication_keys: [:username]
 
-  enum status: {active: 'active', inactive: 'inactive'}  
+  enum status: { active: 'active', inactive: 'inactive' }
 
   # Validations
   validates :status, presence: true

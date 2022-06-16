@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Company < ApplicationRecord
-  enum status: {active: 'active', inactive: 'inactive', blocked: 'blocked'}
+  enum status: { active: 'active', inactive: 'inactive', blocked: 'blocked' }
 
   # Validations
   validates :name, presence: true, length: (4..128)

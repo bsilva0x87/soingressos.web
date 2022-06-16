@@ -6,10 +6,10 @@ RSpec.describe Ticket, type: :model do
   context 'validations' do
     describe '#kind' do
       it { should validate_presence_of(:kind) }
-      
-      it do 
+
+      it do
         should define_enum_for(:kind)
-          .with_values({internal: 'internal', external: 'external'})
+          .with_values({ internal: 'internal', external: 'external' })
           .backed_by_column_of_type(:string)
       end
     end
@@ -20,10 +20,10 @@ RSpec.describe Ticket, type: :model do
 
     describe '#status' do
       it { should validate_presence_of(:status) }
-      
-      it do 
+
+      it do
         should define_enum_for(:status)
-          .with_values({active: 'active', inactive: 'inactive', used: 'used', expired: 'expired'})
+          .with_values({ active: 'active', inactive: 'inactive', used: 'used', expired: 'expired' })
           .backed_by_column_of_type(:string)
       end
     end

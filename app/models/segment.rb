@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Segment < ApplicationRecord
-  enum status: {active: 'active', inactive: 'inactive'}
-  
+  enum status: { active: 'active', inactive: 'inactive' }
+
   # Validations
   validates :name, presence: true, length: { in: (4..72) }
   validates :description, length: { maximum: 240 }

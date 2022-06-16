@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CompanyUser < ApplicationRecord
-  enum status: {active: 'active', inactive: 'inactive'}
+  enum status: { active: 'active', inactive: 'inactive' }
 
   # Validations
   validates :status, presence: true
