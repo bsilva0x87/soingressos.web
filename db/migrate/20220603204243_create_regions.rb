@@ -6,7 +6,8 @@ class CreateRegions < ActiveRecord::Migration[7.0]
       t.string :name, limit: 128
       t.string :status, default: 'active', index: true, null: false, limit: 32
 
-      t.uuid :region_id, foreign_key: true, index: true
+      t.uuid :region_id, index: true
+      t.foreign_key :regions, column: :id
 
       t.string :slug, index: true, unique: true
 
@@ -14,7 +15,6 @@ class CreateRegions < ActiveRecord::Migration[7.0]
       t.decimal :longitude, precision: 10, scale: 6
 
       t.timestamps
-
       t.datetime :deleted_at, index: true
     end
   end
