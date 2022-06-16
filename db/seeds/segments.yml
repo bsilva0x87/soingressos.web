@@ -1,0 +1,25 @@
+attributes:
+  - 
+    name: Passeios
+    description: This is a seed record, should be available only in the local database.
+    status: active
+  - 
+    name: Ingressos
+    description: This is a seed record, should be available only in the local database.
+    status: active
+  - 
+    name: Gastronomia
+    description: This is a seed record, should be available only in the local database.
+    status: active
+  - 
+    name: Transfer
+    description: This is a seed record, should be available only in the local database.
+    status: active
+  - 
+    name: Privativo
+    description: This is a seed record, should be available only in the local database.
+    status: active
+  - 
+    name: Day use
+    description: This is a seed record, should be available only in the local database.
+    status: active

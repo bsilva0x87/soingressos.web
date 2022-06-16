@@ -1,0 +1,73 @@
+attributes:
+  - 
+    name: Rio Grande do Sul, RS
+    status: active
+    latitude: -29.3797216
+    longitude: -50.9014877
+    regions:
+      - 
+        name: Serra Gaúcha
+        status: active
+        latitude: -29.3797216
+        longitude: -50.9014877
+        regions:
+  - 
+    name: Maranhão
+    status: active
+    latitude: -2.5793321
+    longitude: -44.3022719
+    regions:
+  - 
+    name: Santa Catarina, SC
+    status: active
+    latitude: -27.0058704
+    longitude: -48.6520033
+    regions:
+      -
+        name: Balneário Camboriú
+        status: active
+        latitude: -27.0058704
+        longitude: -48.6520033
+        regions:
+      -
+        name: Bombinhas
+        status: active
+        latitude: -27.1740215
+        longitude: -48.5444089
+        regions:
+  - 
+    name: Paraná, PR
+    status: active
+    latitude: -29.3797216
+    longitude: -50.9014877
+    regions:
+      - 
+        name: Foz do Iguaçu
+        status: active
+        latitude: -29.3797216
+        longitude: -50.9014877
+        regions:
+  - 
+    name: Argentina
+    status: active
+    latitude: -29.3797216
+    longitude: -50.9014877
+    regions:
+      - 
+        name: Porto Iguazú
+        status: active
+        latitude: -29.3797216
+        longitude: -50.9014877
+        regions:
+  - 
+    name: São Paulo, SP
+    status: active
+    latitude: -22.5532595
+    longitude: -50.8793716
+    regions:
+      - 
+        name: Aparecida
+        status: active
+        latitude: -22.9089142
+        longitude: -45.3050886
+        regions:
