@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CommissionRule < ApplicationRecord
-  enum kind: %w[percent markdown]
+  enum kind: {percent: 'percent', markdown: 'markdown'}
 
   # Validations
   validates :name, presence: true, length: { in: (4..128) }

@@ -1,13 +1,11 @@
 # frozen_string_literal: true
 
 class AffiliateCode < ApplicationRecord
-  # Statusable attribute concern
-  STATUS_OPTIONS = %w[active inactive].freeze
-  include Statusable
+  enum status: {active: 'active', inactive: 'inactive', blocked: 'blocked'}
 
   # Validations
   validates :code, presence: true, length: { is: 8 }
-  validates :status, presence: true, inclusion: { in: STATUS_OPTIONS }
+  validates :status, presence: true
 
   # Associations
   belongs_to :user

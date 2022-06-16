@@ -16,16 +16,16 @@ RSpec.describe CommissionRule, type: :model do
 
     describe '#kind' do
       it { should validate_presence_of(:kind) }
-      it { should define_enum_for(:kind).with_values(%w[percent markdown]).backed_by_column_of_type(:string) }
+      
+      it do 
+        should define_enum_for(:kind)
+          .with_values({percent: 'percent', markdown: 'markdown'})
+          .backed_by_column_of_type(:string)
+      end
     end
 
     describe '#description' do
       it { should validate_length_of(:description).is_at_most(240) }
     end
   end
-
-  # context 'associations' do
-  #   it { should belong_to(:user).optional }
-  #   it { should belong_to(:product) }
-  # end
 end

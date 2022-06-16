@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 class Company < ApplicationRecord
-  # Statusable attribute concern
-  STATUS_OPTIONS = %w[active inactive].freeze
-  include Statusable
+  enum status: {active: 'active', inactive: 'inactive', blocked: 'blocked'}
 
   # Validations
   validates :name, presence: true, length: (4..128)
@@ -13,7 +11,7 @@ class Company < ApplicationRecord
   validates :phone, presence: true, length: (8..24)
   validates :mobile, length: (8..24)
   validates :country_code, :locale, length: (2..8)
-  validates :status, presence: true, inclusion: { in: STATUS_OPTIONS }
+  validates :status, presence: true
 
   # Associations
   belongs_to :address, optional: true

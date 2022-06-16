@@ -11,12 +11,10 @@ class User < ApplicationRecord
          :rememberable,
          :database_authenticatable, authentication_keys: [:username]
 
-  # Statusable attribute concern
-  STATUS_OPTIONS = %w[active inactive].freeze
-  include Statusable
+  enum status: {active: 'active', inactive: 'inactive'}  
 
   # Validations
-  validates :status, presence: true, inclusion: { in: STATUS_OPTIONS }
+  validates :status, presence: true
   validates :first_name, :last_name, presence: true, length: { in: (2..128) }
 
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i

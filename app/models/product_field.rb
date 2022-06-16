@@ -3,6 +3,7 @@
 class ProductField < ApplicationRecord
   enum kind: %w[text single multiple]
 
+  # Validations
   validates :kind, presence: true
   validates :label, presence: true, length: { in: (4..128) }
 

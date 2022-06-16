@@ -3,6 +3,7 @@
 class ProductAttribute < ApplicationRecord
   enum kind: %w[in out info]
 
+  # Validations
   validates :kind, presence: true
   validates :description, presence: true, length: { in: (8..240) }
 

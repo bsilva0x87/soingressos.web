@@ -3,6 +3,7 @@
 class OrderCustomer < ApplicationRecord
   enum document: %w[rg cpf cnh passport id]
 
+  # Validations
   validates :name, presence: true, length: { in: (4..128) }
   validates :email, presence: true, format: { with: User::EMAIL_REGEX }
   validates :phone, :mobile, presence: true, length: { in: (8..16) }

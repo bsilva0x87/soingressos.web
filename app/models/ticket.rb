@@ -1,15 +1,11 @@
 # frozen_string_literal: true
 
 class Ticket < ApplicationRecord
-  # Statusable attribute concern
-  STATUS_OPTIONS = %w[active inactive].freeze
-  include Statusable
-
-  enum kind: %w[ticket dreams natal]
+  enum kind: {internal: 'internal', external: 'external'}
+  enum status: {active: 'active', inactive: 'inactive', used: 'used', expired: 'expired'}
 
   # Validations
-  validates :date, presence: true
-  validates :status, presence: true, inclusion: { in: STATUS_OPTIONS }
+  validates :kind, :date, :status, presence: true
 
   # Associations
   belongs_to :user, optional: true

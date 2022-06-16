@@ -3,6 +3,7 @@
 class ProductMedia < ApplicationRecord
   enum kind: %w[video link]
 
+  # Validations
   validates :kind, presence: true
 
   # Associations
