@@ -24,4 +24,16 @@ RSpec.describe Region, type: :model do
     it { should belong_to(:region).optional }
     it { should have_many(:regions).class_name('Region') }
   end
+
+  context 'methods' do
+    subject { create(:region) }
+
+    describe '#roots' do
+      it { expect(Region.roots).to be_empty }
+
+      it 'with records' do
+        expect(subject.class.send(:count)).to eq(1)
+      end
+    end
+  end
 end
