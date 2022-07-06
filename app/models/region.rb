@@ -10,4 +10,6 @@ class Region < ApplicationRecord
   # Association
   belongs_to :region, optional: true
   has_many :regions, class_name: 'Region'
+
+  scope :roots, ->{ where(region_id: nil) }
 end

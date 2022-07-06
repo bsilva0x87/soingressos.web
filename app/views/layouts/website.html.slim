@@ -1,11 +1,26 @@
 doctype html
 html
   head
-    title Só Ingressos
+    title= I18n.t('website.app_name')
+    link href="https://www.soingressos.com/img/icon.svg" rel="shortcut icon" type="image/x-icon"
+    link href="https://www.soingressos.com/img/icon.svg" rel="apple-touch-icon" type="image/x-icon"
     meta name="viewport" content="width=device-width,initial-scale=1"
-    meta property="og:site_name" content="Só Ingressos"
+    meta property="og:site_name" content="#{I18n.t('website.app_name')}"
     meta property="og:type" content="website"
     = csrf_meta_tags
     = csp_meta_tag
-    = stylesheet_link_tag "application", "data-turbo-track": "reload"
-  body= yield
+    = stylesheet_link_tag "website", "data-turbo-track": "reload"
+    link(rel="preconnect" href="https://fonts.googleapis.com")
+    link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
+    link(href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet")
+  body
+    .uk-container
+      = render_component 'navbar'
+      = yield
+      = render_component 'modals/change_location'
+      = render_component 'modals/change_locale'
+      = render_component 'modals/change_currency'
+    .uk-container
+      footer.uk-text-small
+        p SÓ INGRESSOS AGÊNCIA DE TURISMO EIRELI<br />©Copyright 2022. Gramado, RS.
+    = javascript_include_tag("uikit.min", "uikit-icons.min")

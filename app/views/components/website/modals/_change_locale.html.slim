@@ -1,0 +1,7 @@
+#change-locale(uk-modal="esc-close:true;bg-close:true")
+  .uk-modal-dialog.uk-modal-body
+    h2.uk-modal-title.uk-text-bold= I18n.t('website.change_locale')
+    p= I18n.t('website.change_locale_explain')
+    ul.uk-list
+      li= link_to I18n.t('website.locale_name', locale: :br), root_path(locale: :br), title: I18n.t('website.locale_name', locale: :br)
+      li= link_to I18n.t('website.locale_name', locale: :en), root_path(locale: :en), title: I18n.t('website.locale_name', locale: :en)
