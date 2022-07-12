@@ -1,24 +1,25 @@
-nav.uk-navbar
-  .uk-navbar-left.uk-padding-small.uk-padding-remove-left
-    = link_to [:root], title: I18n.t('website.root_title') do
-      = image_tag('logo.svg', alt: I18n.t('website.app_name'), width: '144px')
-    ul.uk-navbar-nav.uk-margin-left
-      li
-        = link_to '#change-location', "uk-toggle": "target: #change-location", "uk-tooltip": I18n.t('website.change_location'), title: I18n.t('website.change_location') do
-          i(uk-icon="icon: location; ratio: 0.85" class="uk-margin-small-right")
-          span Serra Gaúcha
-      li= link_to(image_tag(I18n.t('website.locale_icon'), width: '24px'), '#change-locale', "uk-toggle": "target: #change-locale")
-      li= link_to I18n.t('website.currency'), '#change-currency', "uk-toggle": "target: #change-currency"
+.uk-container
+  nav.uk-navbar
+    .uk-navbar-left.uk-padding-small.uk-padding-remove-left
+      = link_to [:root], title: I18n.t('website.root_title') do
+        = image_tag('logo.svg', alt: I18n.t('website.app_name'), width: '144px')
+      ul.uk-navbar-nav.uk-margin-left
+        li
+          = link_to '#change-location', "uk-toggle": "target: #change-location", "uk-tooltip": I18n.t('website.change_location'), title: I18n.t('website.change_location') do
+            i(uk-icon="icon: location; ratio: 0.85" class="uk-margin-small-right")
+            span Serra Gaúcha
+        li= link_to(image_tag(I18n.t('website.locale_icon'), width: '24px'), '#change-locale', "uk-toggle": "target: #change-locale")
+        li= link_to I18n.t('website.currency'), '#change-currency', "uk-toggle": "target: #change-currency"
 
-  .uk-navbar-right
-    ul.uk-navbar-nav
-      li= link_to I18n.t('website.about_us'), '#', title: I18n.t('website.about_us')
-      li
-        = link_to [:root], title: I18n.t('website.my_account') do
-          i(uk-icon="icon: user; ratio: 0.85" class="uk-margin-small-right")
-          span= I18n.t('website.my_account')
+    .uk-navbar-right
+      ul.uk-navbar-nav
+        li= link_to I18n.t('website.about_us'), about_path(locale: I18n.locale), title: I18n.t('website.about_us')
+        li
+          = link_to [:root], title: I18n.t('website.my_account') do
+            i(uk-icon="icon: user; ratio: 0.85" class="uk-margin-small-right")
+            span= I18n.t('website.my_account')
 
-nav.uk-navbar
-  ul.uk-navbar-nav.segments-navbar
-    - Segment.active.order(index: :asc).each do |segment|
-      li= link_to segment.name, [:root], title: segment.name
+  nav.segments.uk-navbar
+    ul.uk-navbar-nav.uk-dotted-border-top
+      - segments.each do |segment|
+        li= link_to segment.name, [:root], title: segment.name

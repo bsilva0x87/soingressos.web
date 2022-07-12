@@ -1,0 +1,21 @@
+.uk-dotted-border-top.uk-dotted-border-bottom
+  .uk-container.uk-padding-small
+    .uk-child-width-expand(uk-grid)
+      .uk-text-left= image_tag('logo.svg', alt: I18n.t('website.app_name'), width: '98px')
+      .uk-text-right
+        strong.uk-text-emphasis Redes Sociais
+        = link_to "https://www.facebook.com/so.ingressos.oficial", target: "_blank", title: "Facebook", class: "uk-text-emphasis" do
+          i(class="uk-margin-small-left" uk-icon="icon: facebook")
+        = link_to "https://www.instagram.com/so.ingressos", target: "_blank", title: "Instagram", class: "uk-text-emphasis" do
+          i(class="uk-margin-small-left" uk-icon="icon: instagram")
+        = link_to "https://www.youtube.com/channel/UCDP2ueQ-NpW7YYpuZcfa56w", target: "_blank", title: "Youtube", class: "uk-text-emphasis" do
+          i(class="uk-margin-small-left" uk-icon="icon: youtube")
+
+.uk-container
+  footer.uk-margin-top
+    .uk-child-width-expand(uk-grid)
+      .uk-text-left
+        small #{I18n.t('website.app_company')}<br />©Copyright 2022. #{I18n.t('website.app_city')}
+      .uk-text-right
+        i(class="uk-margin-small-left" uk-icon="icon: info")
+        i(class="uk-margin-small-left" uk-icon="icon: info")

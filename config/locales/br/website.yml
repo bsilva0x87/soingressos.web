@@ -1,6 +1,8 @@
 br:
   website:
     app_name: Só Ingressos
+    app_company: SÓ INGRESSOS AGÊNCIA DE TURISMO EIRELI
+    app_city: Gramado, RS.
     root_title: Página Inicial
     my_account: Minha conta
     locale_icon: BRL.png

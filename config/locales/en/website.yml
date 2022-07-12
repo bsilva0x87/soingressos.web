@@ -1,6 +1,8 @@
 en:
   website:
     app_name: My Tickets
+    app_company: SÓ INGRESSOS AGÊNCIA DE TURISMO EIRELI
+    app_city: Gramado, RS, Brazil.
     root_title: Homepage
     my_account: My Account
     locale_icon: USD.png

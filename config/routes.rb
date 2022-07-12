@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   root to: 'website#index'
 
   scope "(:locale)", locale: /br|en|es/, defaults: {locale: :br} do
+    get :about, to: 'website#about'
   end
 end

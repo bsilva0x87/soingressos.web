@@ -22,14 +22,26 @@
   min-height: 36px;
 }
 
-.segments-navbar {
+nav.segments ul.uk-navbar-nav {
   width: 100%;
-  border-top: 1px dotted #d9d9d9;
-  border-bottom: 1px dotted #d9d9d9;
 }
 
-.segments-navbar>li>a {
+nav.segments ul.uk-navbar-nav>li>a {
   font-size: 16px;
   padding: 0 16px 0 0;
   min-height: 48px;
+}
+
+.uk-dotted-border-top {
+  border-top: 1px dotted #d9d9d9;
+}
+
+.uk-dotted-border-bottom {
+  border-bottom: 1px dotted #d9d9d9;
+}
+
+footer {
+  font-size: 13px;
+  color: #333;
+  line-height: 12px;
 }
