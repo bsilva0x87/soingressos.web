@@ -11,5 +11,5 @@ class Region < ApplicationRecord
   belongs_to :region, optional: true
   has_many :regions, class_name: 'Region'
 
-  scope :roots, ->{ where(region_id: nil) }
+  scope :roots, ->{ where(region_id: nil).includes(:regions) }
 end
