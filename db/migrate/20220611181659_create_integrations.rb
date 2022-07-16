@@ -13,6 +13,8 @@ class CreateIntegrations < ActiveRecord::Migration[7.0]
 
       t.json :metadata
 
+      t.uuid :franchise_id, null: false, foreign_key: true
+
       t.string :status, default: 'active', index: true, null: false, limit: 32
 
       t.timestamps

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_12_152753) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_16_140710) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -419,6 +419,20 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_12_152753) do
     t.index ["segment_id"], name: "index_segments_on_segment_id"
     t.index ["slug"], name: "index_segments_on_slug"
     t.index ["status"], name: "index_segments_on_status"
+  end
+
+  create_table "sliders", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", limit: 128
+    t.string "description"
+    t.string "title", limit: 128
+    t.string "caption"
+    t.string "call_to_action", limit: 48
+    t.string "target"
+    t.uuid "franchise_id", null: false
+    t.string "status", limit: 32, default: "active", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["status"], name: "index_sliders_on_status"
   end
 
   create_table "stock_types", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

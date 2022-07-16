@@ -8,7 +8,7 @@ module WebsiteHelper
   end
 
   def segments
-    Rails.cache.fetch('website_segments', expires_in: 30.minutes) do 
+    Rails.cache.fetch('website_segments', expires_in: 30.minutes) do
       Segment.active.order(index: :asc)
     end
   end
