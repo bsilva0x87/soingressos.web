@@ -9,7 +9,7 @@
             i(uk-icon="icon: location; ratio: 0.85" class="uk-margin-small-right")
             span Serra Gaúcha
         li= link_to(image_tag(I18n.t('website.locale_icon'), width: '24px'), '#change-locale', "uk-toggle": "target: #change-locale")
-        li= link_to I18n.t('website.currency'), '#change-currency', "uk-toggle": "target: #change-currency"
+        li= link_to I18n.t('website.currency', locale: :br), '#change-currency', "uk-tooltip": "title: #{I18n.t('website.change_currency_explain')}"
 
     .uk-navbar-right
       ul.uk-navbar-nav
