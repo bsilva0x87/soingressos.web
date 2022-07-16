@@ -22,5 +22,7 @@ RSpec.describe Slider, type: :model do
 
   context 'associations' do
     it { should belong_to(:franchise).optional }
+    it { should have_one_attached(:default) }
+    it { should have_one_attached(:mobile) }
   end
 end

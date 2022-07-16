@@ -9,4 +9,6 @@ class Slider < ApplicationRecord
 
   # Associations
   belongs_to :franchise, optional: true
+  has_one_attached :default
+  has_one_attached :mobile
 end
